@@ -94,6 +94,27 @@ var user = {
 		}
 	},
 
+	getUsers : function(next)
+	{
+		try
+		{
+			userModel.find({}, function(er, users)
+			{
+				if(er)
+				{
+					return next({status:'error', statusCode:500, data:err});
+				}
+
+					return next({status:'OK', statusCode:200, data:users});
+			})
+		}
+		catch(e)
+		{
+			return next({status:'error', statusCode:500, data:e.toString()});
+		}
+	},
+	
+
 
 
 }

@@ -10,12 +10,13 @@ global.config = require('./config');
 
 // console.log(express);
 
-
+// Models call
 var db = require('./database');
 var user_model = require('./api/models/user');
 var assignment_model = require('./api/models/assignment');
 
 
+// Routs Call 
 var index = require('./routes/index');
 var user = require('./routes/user');
 var assignment = require('./routes/assignment');
