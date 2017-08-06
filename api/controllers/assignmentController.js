@@ -62,13 +62,9 @@ var assignment = {
 	},
 
 	download : function(req, res)
-	{
-	
+	{	
 		var assignment_id = req.body.assignment_id;		
-
-
-
-	    assignmentService.getAssignmentById(assignment_id, function(response)
+	   	assignmentService.getAssignmentById(assignment_id, function(response)
 	    {
 	    	
 			// var filePath = __dirname + '/../../assets/'+response.data[0].created_at+'.html';
@@ -116,21 +112,24 @@ var assignment = {
 		        // console.log(stream);
 		        stream.pipe(res);
 		    });
-			
-
-
-			/*var filename = path.basename(filePath);
-			
-			res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-			res.setHeader('Content-type', 'text');
-
-			var filestream = fs.createReadStream(filePath);
-			filestream.pipe(res);
-			fs.unlinkSync(filePath);*/
+		
 	
 	    })
 	    
-	}
+	},
+
+
+	getAssignments : function(req, res)
+	{
+		assignmentService.getAllAssignments(function(response)
+		{				
+			return res.json(response);
+		});
+	},
+
+
+	
+
 
 }
 

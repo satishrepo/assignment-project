@@ -13,6 +13,7 @@ var user = {
 	{
 		try
 		{
+
 			userModel.findOne({username:username},function(err, user)
 			{	
 				if(err)

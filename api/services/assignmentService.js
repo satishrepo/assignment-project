@@ -111,6 +111,25 @@ var assignment = {
 		{			
 			return next({status:'error', statusCode:500, data:e.toString()});
 		}
+	},
+
+	getAllAssignments : function(next)
+	{
+		try
+		{
+			assignmentModel.find({}, function(err, result)
+			{
+				if(err)
+				{	
+					return next({status:'error', statusCode:500, data:err});
+				}
+				return next({status:'OK', statusCode:200, data:result});
+			});	
+		}
+		catch(e)
+		{			
+			return next({status:'error', statusCode:500, data:e.toString()});
+		}
 	}
 
 	

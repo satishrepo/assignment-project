@@ -10,6 +10,7 @@ router.post('/saveassignment', loginAuth, assignmentController.saveAssignment);
 router.post('/getassignments', loginAuth, assignmentController.getAssignment);
 router.post('/getallassignments', loginAuth, assignmentController.getAllAssignments);
 router.post('/download',  assignmentController.download);
+router.get('/all',  assignmentController.getAssignments);
 
 
 router.get('*', function(req, res)

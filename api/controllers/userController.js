@@ -7,8 +7,10 @@ var user = {
 		var username = req.body.username;
 		var password = req.body.password;
 
+		// console.log(username, password, req.method);
+
 		userService.userAuthentication(username, password, function(response)
-		{	
+		{				
 			return res.json(response);
 		});
 	
@@ -33,129 +35,16 @@ var user = {
 		});
 	},
 
-	getUser : function(req, res)
-	{
-		
-		var userid = req.session.userid;
-
-		userService.getUserById(userid, function(response)
-		{	
-			res.format(
-			{ 	
-				html:function()
-				{
-					if(response.statusCode !== 200)
-					{
-						return res.render('error', {error:response.data});
-					}
-					return res.render('./user/dashboard', {user:response.data[0]});
-				},
-				json:function()
-				{
-					return res.json(response);
-				}
-			});
-		});
-	},
 
 	getUsers : function(req, res)
 	{
-		userService.getAllUsers(function(response)
+		userService.getUsers(function(response)
 		{	
-			res.format(
-			{ 	
-				html:function()
-				{
-					if(response.statusCode !== 200)
-					{
-						return res.render('error', {error:response.data});
-					}
-					return res.render('./user/users', {users:response.data});
-				},
-				json:function()
-				{
-					return res.json(response);
-				}
-			});
+			return res.json(response);
 		});
 	},
 
-	getUserDetail : function(req, res)
-	{
-		var username = req.query.username || req.params.username || req.body.username;
 
-		userService.getUserDetail(username, function(response)
-		{
-			res.format(
-			{ 	
-				html:function()
-				{
-					if(response.statusCode !== 200)
-					{
-						return res.render('error', {error:response.data});
-					}
-					return res.render('./user/detail', {detail:response.data});
-				},
-				json:function()
-				{
-					return res.json(response);
-				}
-			});
-		});
-	},
-
-	
-	
-	updateUserInfo : function(req, res)
-	{
-		var user = {
-			user : req.body.userid,
-			phone : req.body.phone,
-			sex : req.body.sex,
-		};
-
-		userService.saveUser(user, function(response)
-		{
-			res.format(
-			{
-				html:function()
-				{
-					if(response.statusCode !== 200)
-					{
-						return res.render('error', {error:response.data});
-					}
-					res.redirect('/users');
-				},
-				json:function()
-				{
-					return res.json(response);
-				}
-			});
-		});
-	},
-	removeUser : function(req, res)
-	{
-		var email = req.body.email;
-
-		userService.removeUser(email, function(response)
-		{
-			res.format(
-			{
-				html:function()
-				{
-					if(response.statusCode !== 200)
-					{
-						return res.render('error', {error:response.data});
-					}
-					res.redirect('/users');
-				},
-				json:function()
-				{
-					return res.json(response);
-				}
-			});
-		});
-	},
 
 };
 

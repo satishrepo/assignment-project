@@ -11,6 +11,7 @@ var userController = require('../api/controllers/userController');
 
 router.post('/login',  userController.login);
 router.post('/register',  userController.saveUser);
+router.get('/all',  userController.getUsers);
 
 
 
