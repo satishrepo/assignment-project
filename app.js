@@ -20,6 +20,7 @@ var assignment_model = require('./api/models/assignment');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var assignment = require('./routes/assignment');
+var eatapp = require('./routes/eatapp');
 
 // var sess = require('./middleware/session');
 
@@ -55,6 +56,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use('/',index);
 app.use('/user',user);
 app.use('/assignment',assignment);
+app.use('/eatapp',eatapp);
 
 
 
